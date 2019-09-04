@@ -23,26 +23,32 @@ namespace GuessTheNumber
 
             Console.WriteLine("Enter a number guess between 1 and 9");
             int guess = Convert.ToInt32(Console.ReadLine());
+            int guessNum = 1;
             Console.WriteLine("You guessed " + guess);
 
-            if (secretNumber == guess)
+            while (guess != secretNumber)
             {
-                Console.WriteLine("YOU GUESSED CORRECT!!");
-            }
-            else
-            {
+                //keep guessing
+                
                 Console.WriteLine("Wrong! Try again!");
 
-
-                if(secretNumber < guess)
+                if (secretNumber < guess)
                 {
-                    Console.WriteLine("The secret number is less than "+guess);
+                    Console.WriteLine("The secret number is less than " + guess);
                 }
                 else
                 {
                     Console.WriteLine("The secret number is bigger than " + guess);
                 }
+                //read a new guess
+                Console.WriteLine("Guess another number");
+                guess = Convert.ToInt32(Console.ReadLine());
+                guessNum +=1;
+
             }
+            //now the correct number has been guessed
+            Console.WriteLine("You guessed the correct number!!");
+            Console.WriteLine("You guessed " + guessNum + " time(s)");
 
             Console.ReadKey();
 
