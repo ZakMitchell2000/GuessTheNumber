@@ -26,15 +26,18 @@ namespace GuessTheNumber
                 Console.WriteLine("Generating secret number ... GENERATED!");
 
                 Random rand = new Random();
-                int secretNumber = rand.Next(1, 10);
+                int secretNumber = rand.Next(1, 21);
+                int guess = 0;
                 Console.WriteLine("Our secret number is " + secretNumber);
-
-                Console.WriteLine("Enter a number guess between 1 and 9");
-                int guess = Convert.ToInt32(Console.ReadLine());
+                while(guess < 1 || guess > 20)
+                {
+                    Console.WriteLine("Enter a number guess between 1 and 20");
+                    guess = Convert.ToInt32(Console.ReadLine());
+                }
                 int guessNum = 1;
 
 
-                while (guess != secretNumber)
+                while (guess != secretNumber || guessNum ==5)
                 {
                     //keep guessing
 
@@ -49,17 +52,29 @@ namespace GuessTheNumber
                         Console.WriteLine("The secret number is bigger than " + guess);
                     }
                     //read a new guess
-                    Console.WriteLine("Guess another number");
+                    Console.WriteLine("Guess another number between 1 and 20");
                     guess = Convert.ToInt32(Console.ReadLine());
+                    while(guess <1 || guess>20)
+                    {
+                        Console.WriteLine("Guess another number between 1 and 20");
+                        guess = Convert.ToInt32(Console.ReadLine());
+                    }
                     ++guessNum; // this adds 1 to the number
 
                 }
                 //now the correct number has been guessed
-                Console.WriteLine("You guessed the correct number!!");
-                Console.WriteLine("You guessed " + guessNum + " time(s)");
-
+                if (guessNum < 5)
+                {
+                    Console.WriteLine("You guessed the correct number!!");
+                    Console.WriteLine("You guessed " + guessNum + " time(s)");
+                }
+                else
+                {
+                    Console.WriteLine("You guessed too much! You Suck!!");
+                }
                 // ask if they want to play again
                 Console.WriteLine("Play again? (y/n)");
+                Console.WriteLine("");
                 string resartResponce = Console.ReadLine();
                 if (resartResponce == "y")
                 {
